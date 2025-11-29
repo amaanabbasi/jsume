@@ -4,12 +4,13 @@
     "jsx": "preserve",
     "lib": [
       "ESNext",
-      "DOM"
+      "DOM",
+      "DOM.Iterable"
     ],
     "useDefineForClassFields": true,
     "baseUrl": "./",
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "paths": {
       "@/*": [
         "./*"
@@ -17,9 +18,12 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "vite/client",
-      "vite-plugin-pages/client",
-      "unplugin-icons/types/vue"
+      "node",
+      "react",
+      "react-dom"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
     ],
     "strict": true,
     "noEmit": true,
@@ -40,16 +44,18 @@
     }
   ],
   "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "env.d.ts",
-    "./auto-imports.d.ts",
-    "./components.d.ts",
-    ".next/types/**/*.ts"
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "data/**/*.ts",
+    "hooks/**/*.ts",
+    "lib/**/*.ts",
+    ".next/types/**/*.ts",
+    "next-env.d.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src"
   ]
 }
