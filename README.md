@@ -1,286 +1,219 @@
-# jsumé
+# Amaan Portfolio — Next.js Portfolio Site
 
-JSON resume.
+A modern, story-driven portfolio website built with Next.js 14+ (App Router), TypeScript, TailwindCSS, and configured for Netlify deployment.
 
-Inspired by [antfu/resume](https://github.com/antfu/resume) and [JSON Resume](https://jsonresume.org/).
+## 🚀 Features
 
-## How it works
+- **Modern Stack**: Next.js 14+ with App Router, TypeScript, TailwindCSS
+- **Lightweight Animations**: CSS keyframes and small utility hooks (no heavy 3D libraries)
+- **Interactive UI**: SVG globe with CSS animations, tilt effects on project cards
+- **SEO Optimized**: Comprehensive metadata, Open Graph, and Twitter cards
+- **Netlify Ready**: Pre-configured with `@netlify/plugin-nextjs` for seamless deployment
+- **Accessible**: Semantic HTML, ARIA labels, keyboard navigation
+- **Performance**: Optimized images, lazy loading, minimal bundle size
+- **Responsive**: Mobile-first design that works on all devices
 
-- The data is hosted by [Gist](https://gist.github.com/MoozonWei/70c30e0182fdf013aa6454f10c9db299) with [JSON Resume](https://jsonresume.org/) standard.
-- The website is hosted by [Netlify](http://netlify.com/) with CI/CD.
+## 📋 Prerequisites
 
-## `resume.json` template
+- Node.js 18+ and pnpm (or npm/yarn)
+- A Netlify account (for deployment)
 
-```JSON
-{
-  "en": {
-    "basics": {
-      "name": "Moozon Wei",
-      "label": "Programmer",
-      "image": "",
-      "email": "email@gmail.com",
-      "phone": "(912) 555-4321",
-      "url": "https://personal.website.com",
-      "summary": "Write something about your self",
-      "location": {
-        "address": "2712 Broadway St",
-        "postalCode": "CA 94115",
-        "city": "San Francisco",
-        "countryCode": "US",
-        "region": "California"
-      },
-      "profiles": [
-        {
-          "network": "GitHub",
-          "username": "username",
-          "url": "https://github.com/username"
-        },
-        {
-          "network": "LinkedIn",
-          "username": "username",
-          "url": "https://www.linkedin.com/in/username"
-        },
-        {
-          "network": "Twitter",
-          "username": "username",
-          "url": "https://twitter.com/username"
-        },
-        {
-          "network": "Instagram",
-          "username": "username",
-          "url": "https://instagram.com/username"
-        }
-      ]
-    },
-    "work": [
-      {
-        "company": "Company",
-        "position": "Position",
-        "website": "http://website.website",
-        "location": "Beijing, China",
-        "summary": "Summarize your work experience",
-        "ongoing": true,
-        "startDate": "2019-10-01",
-        "endDate": "",
-        "start": {
-          "year": 2019,
-          "month": 10
-        },
-        "end": {},
-        "highlights": [
-          "highlight 1 ",
-          "highlight 2",
-          "highlight 3"
-        ]
-      },
-      {
-        "company": "Company",
-        "position": "Position",
-        "website": "http://website.website",
-        "location": "your city, your country",
-        "summary": "Summarize your work experience",
-        "ongoing": false,
-        "startDate": "2019-10-01",
-        "endDate": "2020-06-01",
-        "start": {
-          "year": 2019,
-          "month": 10
-        },
-        "end": {
-          "year": 2020,
-          "month": 6
-        },
-        "highlights": [
-          "highlight 1 ",
-          "highlight 2",
-          "highlight 3"
-        ]
-      }
-    ],
-    "education": [
-      {
-        "institution": "XXXXXX University",
-        "area": "Computer Science",
-        "studyType": "Bachelor of Science",
-        "location": "Beijing, China",
-        "ongoing": true,
-        "startDate": "2015-09-01",
-        "endDate": "2019-06-01",
-        "start": {
-          "year": 2015,
-          "month": 9
-        },
-        "end": {
-          "year": 2019,
-          "month": 6
-        },
-        "description": "Description of your education",
-        "activities": "",
-        "gpa": "",
-        "courses": [
-          "Data Structure(95)",
-          "Java Programming(88)",
-          "Electronic System Fundamentals(86)",
-          "Operations Research(85)"
-        ]
-      }
-    ],
-    "awards": [
-      {
-        "title": "XXXXXX Award",
-        "summary": "Just a very easy competition, but I got the first prize.",
-        "description": "Description of the award",
-        "awarder": "Who gave you the award",
-        "date": "2018-10-01",
-        "fullDate": {
-          "year": 2018,
-          "month": 10
-        }
-      }
-    ],
-    "skills": [
-      {
-        "keywords": [
-          "TypeScript",
-          "JavaScript",
-          "Vue",
-          "Vite"
-        ],
-        "level": "Senior",
-        "name": "Frontend"
-      },
-      {
-        "keywords": [
-          "Node",
-          "MongoDB",
-          "MySQL",
-          "Serverless",
-          "Nginx",
-          "Docker"
-        ],
-        "level": "Senior",
-        "name": "Backend"
-      },
-      {
-        "keywords": [
-          "Android",
-          "Kotlin",
-          "PWA"
-        ],
-        "level": "Intermediate",
-        "name": "Mobile"
-      },
-      {
-        "keywords": [
-          "Firebase",
-          "AWS",
-          "Azure",
-          "AliCloud"
-        ],
-        "level": "Intermediate",
-        "name": "DevOps"
-      },
-      {
-        "keywords": [
-          "Python",
-          "Java",
-          "C/C++",
-          "C#",
-          "Go"
-        ],
-        "level": "Intermediate",
-        "name": "Languages"
-      }
-    ],
-    "languages": [
-      {
-        "language": "Chinese",
-        "fluency": "Native speaker"
-      },
-      {
-        "language": "English",
-        "fluency": "Fluent"
-      },
-      {
-        "language": "Japanese",
-        "fluency": "Intermediate"
-      }
-    ],
-    "projects": [
-      {
-        "name": "Vitest",
-        "summary": "A blazing fast unit test framework powered by Vite.",
-        "githubUrl": "https://github.com/vitest-dev/vitest",
-        "description": "Description of the project",
-        "keywords": [
-          "TypeScript"
-        ],
-        "startDate": "2019-01-01",
-        "start": {
-          "year": 2019,
-          "month": 1
-        },
-        "endDate": "2021-01-01",
-        "end": {
-          "year": 2021,
-          "month": 1
-        },
-        "website": "https://vitest.dev/"
-      }
-    ],
-    "interests": [],
-    "certificates": [],
-    "volunteer": [],
-    "references": [],
-    "publications": []
-  },
-  "zh": {},
-  "order": [
-    "about",
-    "projects",
-    "work",
-    "education",
-    "publications",
-    "skills",
-    "awards",
-    "languages",
-    "certificates",
-    "volunteer",
-    "interests",
-    "references"
-  ]
-}
+## 🛠️ Local Development
+
+### 1. Install Dependencies
+
+```bash
+pnpm install
 ```
 
-## Deploy your own resume
+### 2. Run Development Server
 
-1. Fork this repository.
+```bash
+pnpm dev
+```
 
-2. Create a `resume.json` [gist](https://gist.github.com/), and get `username` & `gistId`.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the site.
 
-    *For example*:
+### 3. Build for Production
 
-    ```
-    https://gist.github.com/MoozonWei/70c30e0182fdf013aa6454f10c9db299
-    https://|----domain---|-username-|------------gistId-------------|
-    ```
+```bash
+pnpm build
+```
 
-<!-- 3. **[Optional & Not recommended]** Create `/public/resume.json`.
+### 4. Start Production Server (local testing)
 
-    > Gist stores your **online** resume data, and `/public/resume.json` stores your resume data **locally**. If resume data cannot be found on Gist, local resume data will be used as a backup. -->
+```bash
+pnpm start
+```
 
-3. Setup [Netlify](http://netlify.com/).
+### 5. Lint
 
-    - [Link repository](https://docs.netlify.com/git/overview/#git-provider-support)
-    - [Create environment variables](https://docs.netlify.com/environment-variables/get-started/#site-environment-variables)
+```bash
+pnpm lint
+```
 
-        ```
-        VITE_GIST_USERNAME=username
-        VITE_GIST_ID=gistId
-        ```
+## 📁 Project Structure
 
-4. [Sync the fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) to keep it up-to-date with the upstream repository.
+```
+/
+├── app/                    # Next.js App Router pages
+│   ├── layout.tsx          # Root layout with metadata
+│   ├── page.tsx           # Home page
+│   ├── globals.css        # Global styles
+│   └── projects/
+│       └── [slug]/
+│           └── page.tsx   # Dynamic project pages (placeholder)
+├── components/            # React components
+│   ├── Hero.tsx          # Hero section with story
+│   ├── SimpleSVGGlobe.tsx # Lightweight SVG globe with CSS animations
+│   ├── TestimonialsCarousel.tsx
+│   ├── ProjectsGrid.tsx
+│   ├── ProjectCard.tsx
+│   ├── WhyWorkWithMe.tsx
+│   ├── ContactForm.tsx   # Netlify forms integration
+│   └── Footer.tsx
+├── hooks/                 # Custom React hooks
+│   ├── useInView.ts      # IntersectionObserver hook for scroll animations
+│   └── useTilt.ts        # Tilt effect hook for project cards
+├── data/
+│   └── demo-data.ts      # Sample projects and testimonials
+├── public/               # Static assets
+│   ├── favicon.svg
+│   ├── screenshot-1.png
+│   └── screenshot-2.png
+├── netlify.toml          # Netlify configuration
+├── next.config.js        # Next.js configuration
+├── tailwind.config.js    # TailwindCSS configuration
+└── tsconfig.json         # TypeScript configuration
+```
 
-## License
+## 🌐 Deployment to Netlify
 
-The script is licensed with [MIT](https://choosealicense.com/licenses/mit/#).
+### Option 1: Deploy via Netlify Dashboard (Recommended)
+
+1. **Push your code to GitHub/GitLab/Bitbucket**
+   ```bash
+   git add .
+   git commit -m "Revamp: Story-first homepage, lightweight animations, Netlify contact form"
+   git push origin main
+   ```
+
+2. **Connect to Netlify**
+   - Go to [Netlify](https://app.netlify.com)
+   - Click "Add new site" → "Import an existing project"
+   - Connect your Git provider and select the repository
+
+3. **Configure Build Settings**
+   - Build command: `pnpm run build` (or `npm run build`)
+   - Publish directory: `.next` (Netlify plugin will handle this automatically)
+   - The `netlify.toml` file is already configured
+
+4. **Deploy**
+   - Click "Deploy site"
+   - Netlify will automatically install dependencies and build your site
+   - The `@netlify/plugin-nextjs` plugin will be automatically installed and configured
+
+### Option 2: Deploy via Netlify CLI
+
+1. **Install Netlify CLI** (optional)
+   ```bash
+   npm install -g netlify-cli
+   ```
+
+2. **Login to Netlify**
+   ```bash
+   netlify login
+   ```
+
+3. **Initialize and Deploy**
+   ```bash
+   netlify init
+   netlify deploy --prod
+   ```
+
+### Post-Deployment Setup
+
+1. **Configure Netlify Forms**
+   - The contact form is already configured with `data-netlify="true"`
+   - Forms will automatically work once deployed
+   - View submissions in Netlify Dashboard → Forms
+
+2. **Update Environment Variables** (if needed)
+   - Go to Site settings → Environment variables
+   - Add any required variables (none required for basic setup)
+
+3. **Custom Domain** (optional)
+   - Go to Site settings → Domain management
+   - Add your custom domain
+
+## 📝 Customization
+
+### Update Content
+
+1. **Hero Story**: Edit `components/Hero.tsx` (use exact copy provided)
+2. **Projects**: Edit `data/demo-data.ts`
+3. **Testimonials**: Edit `data/demo-data.ts` (use exact copy provided)
+4. **Social Links**: Edit `components/Footer.tsx`
+
+### Replace Placeholder Images
+
+Replace the placeholder images in `/public`:
+- `screenshot-1.png` and `screenshot-2.png` - Project screenshots (800x450px recommended)
+- `favicon.svg` - Site favicon
+
+### Styling
+
+- TailwindCSS configuration: `tailwind.config.js`
+- Global styles: `app/globals.css`
+- Custom colors and animations are defined in `tailwind.config.js`
+
+## 🔧 Technical Details
+
+### Lightweight Animations
+
+- **No heavy 3D libraries**: This project intentionally avoids `three.js`, `react-globe.gl`, and similar heavy libraries
+- **SVG Globe**: Uses inline SVG with CSS `@keyframes` for rotation and orbit animations
+- **Tilt Effect**: Custom `useTilt` hook (~40 lines) using CSS transforms based on mouse position
+- **Scroll Animations**: `useInView` hook using IntersectionObserver API
+- **CSS Keyframes**: All animations use lightweight CSS animations
+
+### Performance
+
+- Minimal bundle size (no heavy graphics libraries)
+- Optimized images with Next.js Image component
+- Lazy loading for components
+- CSS-only animations for better performance
+
+## 🔧 Troubleshooting
+
+### Build Errors
+
+- Ensure Node.js 18+ is installed
+- Clear `.next` folder and `node_modules`, then reinstall:
+  ```bash
+  rm -rf .next node_modules
+  pnpm install
+  ```
+
+### Netlify Forms Not Working
+
+- Ensure `data-netlify="true"` is on the form element
+- Check that the form has a `name` attribute matching the hidden `form-name` field
+- Verify the honeypot field is present and hidden
+
+## 📚 Tech Stack
+
+- **Framework**: Next.js 14+ (App Router)
+- **Language**: TypeScript
+- **Styling**: TailwindCSS
+- **Animations**: CSS keyframes + custom hooks (no heavy animation libraries)
+- **Icons**: react-icons
+- **Deployment**: Netlify with `@netlify/plugin-nextjs`
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+Built with ❤️ by Amaan
