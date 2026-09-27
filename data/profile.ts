@@ -11,7 +11,7 @@ export const profile = {
   tagline:
     'I lead in-house and vendor teams to ship business systems people rely on, and I cut what they cost to run. Next up: AI agents inside those workflows.',
   resumeSummary:
-    'Software engineer and technical lead at Lakshmikumaran & Sridharan. Leads in-house and vendor teams to deliver business systems used by hundreds of people, and saved about ₹36 lakh (~US$40K) a year through cost optimization. Next focus: AI agents inside business workflows.',
+    'Software engineer and technical lead at Lakshmikumaran & Sridharan. Leads in-house and vendor teams to deliver business systems used by hundreds of people, and owns cost optimization alongside engineering. Next focus: AI agents inside business workflows.',
   site: 'https://amaanabbasi.me',
   email: 'hello@amaanabbasi.me',
   links: {
@@ -25,7 +25,6 @@ export const company = 'Lakshmikumaran & Sridharan'
 
 // Headline numbers, reused by "How I lead", the résumé and the chat.
 export const impact = [
-  { value: '₹36L', label: 'saved per year through cost optimization (~US$40K)' },
   { value: '100s', label: 'people using the internal apps I delivered' },
   { value: '21', label: 'vendor team members coordinated, across teams of 7 and 14' },
   { value: '4', label: 'interns led and mentored' },
@@ -54,12 +53,12 @@ export const focusAreas = [
   {
     id: 'systems',
     title: 'Business systems',
-    body: 'Finance, expense and CRM workflows, from GST returns and e-invoicing to expense claims, built for the people who use them every day.',
+    body: 'Finance, expense and CRM workflows, from invoicing and GST e-invoicing to expense claims, built for the people who use them every day.',
   },
   {
     id: 'cost',
     title: 'Cost optimization',
-    body: 'About ₹36 lakh a year saved so far. I find where the money goes, fix the biggest line items first, and keep reliability non-negotiable.',
+    body: 'A core part of my role now. I find where the money goes, fix the biggest line items first, and keep reliability non-negotiable.',
   },
   {
     id: 'agents',
@@ -78,16 +77,6 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  {
-    slug: 'cost-optimization',
-    title: 'Cost optimization',
-    summary: `Took on cost optimization alongside my engineering work at ${company}.`,
-    metrics: [
-      { value: '₹3L', label: 'saved per month' },
-      { value: '₹36L', label: 'saved per year (~US$40K)' },
-    ],
-    tags: ['Cost optimization'],
-  },
   {
     slug: 'vendor-delivery',
     title: 'Internal applications, delivered with vendors',
@@ -108,16 +97,21 @@ export const projects: Project[] = [
     summary: 'Replicated Microsoft Dynamics 365 Business Central finance workflows inside a legacy system.',
     points: [
       'Invoicing and customer ledger entries',
-      'GST returns',
-      'E-invoicing, including IRN generation',
+      'GST e-invoicing: each invoice is reported and receives its IRN',
     ],
-    tags: ['Business Central', 'GST', 'E-invoicing (IRN)', 'Finance'],
+    tags: ['Business Central', 'GST e-invoicing (IRN)', 'Finance'],
   },
   {
     slug: 'expense-management',
     title: 'Expense management and CRM integration',
     summary: 'Built an expense management system and integrated the firm’s CRM with travel and expense apps.',
     tags: ['Expense management', 'CRM', 'Integrations'],
+  },
+  {
+    slug: 'cost-optimization',
+    title: 'Cost optimization',
+    summary: `Took ownership of cost optimization alongside my engineering work, cutting recurring costs for the firm.`,
+    tags: ['Cost optimization'],
   },
 ]
 
@@ -138,10 +132,9 @@ export const experience: Job[] = [
     note: 'Engineering, requirements, vendor delivery, finance systems and cost optimization',
     points: [
       'Grew the role from engineering into requirements gathering, vendor delivery and cost optimization',
-      'Saved about ₹3 lakh a month (₹36 lakh a year) through cost optimization',
       'Coordinated vendor teams of 7 and 14 people to deliver internal applications used by hundreds of people',
       'Led and mentored a team of four interns',
-      'Replicated Business Central finance workflows in a legacy system: invoicing, GST returns, e-invoicing (IRN) and customer ledger entries',
+      'Replicated Business Central finance workflows in a legacy system: invoicing, GST e-invoicing with IRN generation, and customer ledger entries',
       'Built an expense management system and integrated the CRM with travel and expense apps',
     ],
   },

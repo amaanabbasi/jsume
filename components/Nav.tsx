@@ -12,7 +12,7 @@ const links = [
 
 export function Monogram() {
   return (
-    <span aria-hidden className="size-7 bg-accent text-accent-ink grid place-items-center rounded-lg text-[15px] font-semibold font-serif">
+    <span aria-hidden className="bg-accent text-accent-ink size-7 grid place-items-center rounded-lg text-[15px] font-semibold font-serif">
       {profile.firstName[0]}
     </span>
   )

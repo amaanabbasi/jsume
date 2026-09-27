@@ -42,7 +42,7 @@ export const qas: QA[] = [
 
 My role started in engineering and grew into owning outcomes: I gather requirements, lead interns, coordinate vendor teams, and deliver internal systems that hundreds of people use, from finance and GST compliance to expense management and CRM integrations.
 
-Along the way I took on cost optimization too, saving about **₹36 lakh (~US$40K) a year**. Next, I'm bringing AI agents into exactly these kinds of workflows.`,
+Along the way I took on **cost optimization** too, cutting recurring costs. Next, I'm bringing AI agents into exactly these kinds of workflows.`,
     followUps: ['lead', 'cost-wins', 'projects'],
   },
   {
@@ -108,11 +108,9 @@ With interns, I give real ownership of small pieces, review closely, and widen t
   {
     id: 'cost-wins',
     category: 'cost',
-    question: 'How much have you saved, and how?',
-    keywords: ['cost', 'costs', 'save', 'saved', 'saving', 'savings', 'cheaper', 'reduce', 'reduced', 'bill', 'spend', 'budget', 'optimization', 'optimize', 'money', 'lakh', 'rupees'],
-    answer: `At ${company} I took on cost optimization alongside engineering. So far the savings add up to about **₹3 lakh a month, roughly ₹36 lakh (~US$40K) a year**.
-
-My approach is simple:
+    question: 'How do you approach cost optimization?',
+    keywords: ['cost', 'costs', 'save', 'saved', 'saving', 'savings', 'cheaper', 'reduce', 'reduced', 'bill', 'spend', 'budget', 'optimization', 'optimize', 'money', 'lakh', 'rupees', 'how much', 'figures', 'numbers'],
+    answer: `At ${company} I took on cost optimization alongside engineering, and the savings recur month after month. I keep the exact figures internal to the firm, but I'm happy to walk through the approach:
 
 - **Find where the money actually goes** before cutting anything.
 - **Fix the biggest line items first,** because that's where effort pays back fastest.
@@ -145,9 +143,9 @@ The goal is a smaller bill with no drop in quality, and the numbers to prove it.
     keywords: ['project', 'projects', 'proud', 'portfolio', 'built', 'build', 'case study', 'examples', 'achievements', 'accomplishments', 'systems'],
     answer: `The work I'm proudest of, all at ${company}:
 
-- **Cost optimization** — about ₹36 lakh a year saved.
+- **Cost optimization** — cutting recurring costs alongside my engineering work.
 - **Internal applications with vendors** — gathered requirements and coordinated vendor teams of 7 and 14 people to deliver apps used by hundreds of people at the firm.
-- **Finance system** — replicated Business Central finance workflows in a legacy system: invoicing, GST returns, e-invoicing (IRN) and customer ledger entries.
+- **Finance system** — replicated Business Central finance workflows in a legacy system: invoicing, GST e-invoicing with IRN generation, and customer ledger entries.
 - **Expense management** — built an expense management system and integrated our CRM with travel and expense apps.
 
 There's more in [Selected work](#work) below.`,
@@ -161,11 +159,10 @@ There's more in [Selected work](#work) below.`,
     answer: `I replicated Microsoft Dynamics 365 Business Central's finance workflows inside a legacy system. It covers:
 
 - **Invoicing**
-- **GST returns**
-- **E-invoicing**, including IRN (Invoice Reference Number) generation
+- **GST e-invoicing** — each invoice is reported and receives its IRN (Invoice Reference Number)
 - **Customer ledger entries**
 
-It's compliance-critical work: every figure has to reconcile, because it ends up in tax filings.`,
+It's compliance-critical work: once an invoice has its IRN it's registered, so it has to be right the first time.`,
     followUps: ['expenses', 'projects', 'stack'],
   },
   {
@@ -201,7 +198,7 @@ I pick tools for the problem rather than the résumé, but Python is home turf.`
     keywords: ['ai', 'agent', 'agents', 'agentic', 'llm', 'llms', 'gpt', 'claude', 'genai', 'generative', 'machine learning', 'ml', 'rag', 'automation', 'future', 'next'],
     answer: `AI agents are where I'm heading next, and the systems I build today are where they'll be most useful.
 
-Invoices, GST returns, expense claims and CRM updates are full of repetitive checks and data entry. That's the busywork I want agents to take on:
+Invoices, e-invoicing, expense claims and CRM updates are full of repetitive checks and data entry. That's the busywork I want agents to take on:
 
 - **Grounded in real data** — the ledger, the CRM, the policy document, not guesses.
 - **Checked before they act** — evals, validation and a human sign-off wherever money or compliance is involved.
@@ -268,7 +265,7 @@ export const popularIds = ['intro', 'lead', 'cost-wins', 'projects', 'ai-focus']
 export const placeholderPrompts = [
   'Ask me anything about my work…',
   'How do you lead a project?',
-  'How did you save ₹36 lakh a year?',
+  'How do you approach cost optimization?',
   'What are you building with AI agents?',
 ]
 

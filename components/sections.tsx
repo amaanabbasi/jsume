@@ -24,7 +24,7 @@ export function HowILead() {
     <section id="how-i-lead" className="mx-auto max-w-5xl px-5 py-24 sm:py-32">
       <SectionHeading eyebrow="How I lead" title="From a vague request to a system people use every day." />
       <Reveal>
-        <ul className="border-line bg-line grid grid-cols-2 mt-14 gap-px overflow-hidden border rounded-2xl md:grid-cols-4" aria-label="Impact">
+        <ul className="border-line bg-line grid grid-cols-1 mt-14 gap-px overflow-hidden border rounded-2xl sm:grid-cols-3" aria-label="Impact">
           {impact.map(item => (
             <li key={item.label} className="bg-surface p-6">
               <p className="text-ink text-4xl tracking-tight font-serif sm:text-[44px]">
@@ -312,7 +312,7 @@ export function Footer() {
                 href={href}
                 aria-label={label}
                 {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                className="hover:text-ink size-9 hover:bg-surface-2 grid place-items-center rounded-lg transition-colors"
+                className="hover:text-ink hover:bg-surface-2 size-9 grid place-items-center rounded-lg transition-colors"
               >
                 <Icon className="size-[18px]" aria-hidden />
               </a>
