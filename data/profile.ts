@@ -1,15 +1,17 @@
-// Single source of truth for the facts on the site. Edit here; every section and chat answer reads from it.
+// Single source of truth for the facts on the site. Edit here; every section, the chat, /resume and /llms.txt read from it.
 
 export const profile = {
   name: 'Amaan Abbasi',
   firstName: 'Amaan',
   initials: 'AA',
-  title: 'Software Engineer',
-  location: 'USA',
-  headline: 'AI agents, LLM systems & cost optimization',
+  title: 'Software Development Engineer',
+  headline: 'Software engineer & technical lead',
+  focusLine: 'Business systems, AI agents & cost optimization',
+  current: 'Software engineer at Lakshmikumaran & Sridharan',
   tagline:
-    'Software engineer focused on AI agents and LLM systems\u00A0— and on the part most teams underestimate: what they cost to run.',
-  availability: 'Open to AI engineering roles & partnerships',
+    'I lead in-house and vendor teams to ship business systems people rely on, and I cut what they cost to run. Next up: AI agents inside those workflows.',
+  resumeSummary:
+    'Software engineer and technical lead at Lakshmikumaran & Sridharan. Leads in-house and vendor teams to deliver business systems used by hundreds of people, and saved about ₹36 lakh (~US$40K) a year through cost optimization. Next focus: AI agents inside business workflows.',
   site: 'https://amaanabbasi.me',
   email: 'hello@amaanabbasi.me',
   links: {
@@ -19,21 +21,50 @@ export const profile = {
   },
 }
 
-export const focusAreas = [
+export const company = 'Lakshmikumaran & Sridharan'
+
+// Headline numbers, reused by "How I lead", the résumé and the chat.
+export const impact = [
+  { value: '₹36L', label: 'saved per year through cost optimization (~US$40K)' },
+  { value: '100s', label: 'people using the internal apps I delivered' },
+  { value: '21', label: 'vendor team members coordinated, across teams of 7 and 14' },
+  { value: '4', label: 'interns led and mentored' },
+]
+
+export const leadershipPrinciples = [
   {
-    id: 'agents',
-    title: 'AI agents',
-    body: 'Agents that do real work: tool use, retrieval and clear guardrails, measured with evals before they are scaled.',
+    title: 'Start with the business',
+    body: 'I work with the people who will use the system to pin down the real requirement and what success looks like, before anyone writes code.',
   },
   {
-    id: 'llm',
-    title: 'LLM products',
-    body: 'From prototype to production: structured outputs, streaming UX, observability and graceful fallbacks.',
+    title: 'Run one team, even across vendors',
+    body: 'Clear scope, owners, milestones and acceptance criteria, whether the work sits with my interns or with vendor teams of 7 and 14 people.',
+  },
+  {
+    title: 'Ship in small, visible steps',
+    body: 'Working software early and often, so stakeholders see progress and problems surface while they are still cheap to fix.',
+  },
+  {
+    title: 'Own the outcome, including the bill',
+    body: 'Adoption, data that reconciles, and costs tracked from day one. Cost is part of the result, not an afterthought.',
+  },
+]
+
+export const focusAreas = [
+  {
+    id: 'systems',
+    title: 'Business systems',
+    body: 'Finance, expense and CRM workflows, from GST returns and e-invoicing to expense claims, built for the people who use them every day.',
   },
   {
     id: 'cost',
     title: 'Cost optimization',
-    body: 'Inference is the new cloud bill. Model routing, caching, batching and right-sizing, so the unit economics work.',
+    body: 'About ₹36 lakh a year saved so far. I find where the money goes, fix the biggest line items first, and keep reliability non-negotiable.',
+  },
+  {
+    id: 'agents',
+    title: 'AI agents, next',
+    body: 'Agents that take on the repetitive work inside these workflows: grounded in real data, checked before they act, and cost-aware from day one.',
   },
 ] as const
 
@@ -41,55 +72,79 @@ export interface Project {
   slug: string
   title: string
   summary: string
-  problem: string
-  solution: string
-  metrics: { value: string, label: string }[]
-  tech: string[]
+  points?: string[]
+  metrics?: { value: string, label: string }[]
+  tags: string[]
 }
 
 export const projects: Project[] = [
   {
-    slug: 'log-analytics-platform',
-    title: 'Log analytics platform',
-    summary: 'Scalable log processing handling tens of millions of logs a day.',
-    problem: 'The legacy system could not keep up with growing log volume, causing bottlenecks and data loss.',
-    solution: 'A cloud-based pipeline with distributed processing, real-time indexing and intelligent caching.',
+    slug: 'cost-optimization',
+    title: 'Cost optimization',
+    summary: `Took on cost optimization alongside my engineering work at ${company}.`,
     metrics: [
-      { value: '−40%', label: 'infrastructure cost' },
-      { value: '10×', label: 'faster queries' },
-      { value: '99.9%', label: 'uptime' },
+      { value: '₹3L', label: 'saved per month' },
+      { value: '₹36L', label: 'saved per year (~US$40K)' },
     ],
-    tech: ['AWS', 'Kafka', 'Elasticsearch', 'Node.js', 'TypeScript'],
+    tags: ['Cost optimization'],
   },
   {
-    slug: 'cloud-infrastructure',
-    title: 'Cloud infrastructure optimization',
-    summary: 'Auto-scaling infrastructure with monitoring and cost controls.',
-    problem: 'Unpredictable traffic spikes caused downtime and high infrastructure costs.',
-    solution: 'Auto-scaling architecture with intelligent load balancing and right-sized workloads.',
-    metrics: [
-      { value: '−35%', label: 'infrastructure cost' },
-      { value: '0', label: 'downtime during spikes' },
+    slug: 'vendor-delivery',
+    title: 'Internal applications, delivered with vendors',
+    summary: 'Gathered requirements and coordinated vendor teams to deliver applications used across the firm.',
+    points: [
+      'Turned business requirements into scope vendors could build against',
+      'Coordinated vendor teams of 7 and 14 people through delivery',
     ],
-    tech: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'Prometheus'],
+    metrics: [
+      { value: '100s', label: 'internal users' },
+      { value: '21', label: 'vendor team members' },
+    ],
+    tags: ['Requirements', 'Vendor management', 'Delivery'],
   },
   {
-    slug: 'legacy-migration',
-    title: 'Legacy application migration',
-    summary: 'Modernized an enterprise application from a legacy framework to Next.js.',
-    problem: 'An outdated stack made maintenance difficult and slowed feature development.',
-    solution: 'Migrated to Next.js and TypeScript with modern CI/CD and a better developer experience.',
-    metrics: [
-      { value: '50%', label: 'faster page loads' },
-      { value: '−30%', label: 'bugs' },
+    slug: 'finance-system',
+    title: 'Finance system: Business Central replication',
+    summary: 'Replicated Microsoft Dynamics 365 Business Central finance workflows inside a legacy system.',
+    points: [
+      'Invoicing and customer ledger entries',
+      'GST returns',
+      'E-invoicing, including IRN generation',
     ],
-    tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'CI/CD'],
+    tags: ['Business Central', 'GST', 'E-invoicing (IRN)', 'Finance'],
+  },
+  {
+    slug: 'expense-management',
+    title: 'Expense management and CRM integration',
+    summary: 'Built an expense management system and integrated the firm’s CRM with travel and expense apps.',
+    tags: ['Expense management', 'CRM', 'Integrations'],
   },
 ]
 
-// From the Indeed profile. `period` is the start date; the most recent role has no date on record.
-export const experience = [
-  { role: 'Software Development Engineer', company: 'Lakshmikumaran & Sridharan', period: 'Most recent' },
+export interface Job {
+  role: string
+  company: string
+  period: string
+  note?: string
+  points?: string[]
+}
+
+// Earlier roles come from the Indeed profile, where `period` is the start date.
+export const experience: Job[] = [
+  {
+    role: 'Software Development Engineer',
+    company,
+    period: 'Current',
+    note: 'Engineering, requirements, vendor delivery, finance systems and cost optimization',
+    points: [
+      'Grew the role from engineering into requirements gathering, vendor delivery and cost optimization',
+      'Saved about ₹3 lakh a month (₹36 lakh a year) through cost optimization',
+      'Coordinated vendor teams of 7 and 14 people to deliver internal applications used by hundreds of people',
+      'Led and mentored a team of four interns',
+      'Replicated Business Central finance workflows in a legacy system: invoicing, GST returns, e-invoicing (IRN) and customer ledger entries',
+      'Built an expense management system and integrated the CRM with travel and expense apps',
+    ],
+  },
   { role: 'Python Developer', company: 'Flipkoins', period: 'Nov 2021' },
   { role: 'Web Application Developer', company: 'Hrdfi', period: 'Jul 2021' },
   { role: 'Backend Developer', company: 'Incupad', period: 'Sep 2020' },
@@ -105,12 +160,12 @@ export const education = [
 export const certifications = ['Cloud Computing with AWS']
 
 export const skills = {
-  'Languages': ['Python', 'TypeScript', 'JavaScript', 'SQL'],
-  'Backend': ['Django', 'Flask', 'Node.js', 'REST APIs'],
-  'Frontend': ['React', 'Next.js', 'Tailwind CSS'],
-  'Cloud & infra': ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'Prometheus'],
-  'Data': ['Kafka', 'Elasticsearch', 'MySQL', 'SQL Server', 'Pandas'],
-  'AI / ML': ['LLM APIs', 'Keras', 'OpenCV'],
+  'Leadership': ['Requirements gathering', 'Vendor management', 'Mentoring', 'Cost optimization'],
+  'Business systems': ['Business Central', 'GST & e-invoicing (IRN)', 'CRM integrations', 'Expense management'],
+  'Languages': ['Python', 'JavaScript', 'SQL'],
+  'Backend & data': ['Django', 'Flask', 'REST APIs', 'MySQL', 'SQL Server', 'Pandas'],
+  'Cloud': ['AWS', 'Linux'],
+  'AI / ML': ['Keras', 'OpenCV'],
 }
 
 export const testimonials = [

@@ -1,34 +1,35 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Source_Serif_4 } from 'next/font/google'
-import { education, profile } from '@/data/profile'
+import { company, education, profile } from '@/data/profile'
 import './globals.css'
 
 const sans = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
 const serif = Source_Serif_4({ subsets: ['latin'], variable: '--font-serif', display: 'swap', axes: ['opsz'] })
 
 const title = `${profile.name} — ${profile.headline}`
+const description = `${profile.headline}. ${profile.tagline}`
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.site),
-  title,
-  description: profile.tagline,
+  title: { default: title, template: `%s · ${profile.name}` },
+  description,
   keywords: [
     'Amaan Abbasi',
-    'AI engineer',
-    'AI agents',
-    'LLM',
-    'LLM cost optimization',
-    'cloud cost optimization',
     'software engineer',
-    'backend engineer',
-    'AWS',
+    'technical lead',
+    'business systems',
+    'cost optimization',
+    'vendor management',
+    'Business Central',
+    'GST e-invoicing',
+    'AI agents',
     'Python',
   ],
   authors: [{ name: profile.name, url: profile.site }],
   alternates: { canonical: '/' },
   openGraph: {
     title,
-    description: profile.tagline,
+    description,
     url: profile.site,
     siteName: profile.name,
     type: 'profile',
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title,
-    description: profile.tagline,
+    description,
     creator: '@amaancypy',
     images: ['/og.png'],
   },
@@ -63,10 +64,21 @@ const personJsonLd = {
   'name': profile.name,
   'url': profile.site,
   'jobTitle': profile.title,
-  'description': profile.tagline,
+  'worksFor': { '@type': 'Organization', 'name': company },
+  'description': description,
   'email': `mailto:${profile.email}`,
   'sameAs': Object.values(profile.links),
-  'knowsAbout': ['AI agents', 'Large language models', 'LLM cost optimization', 'Cloud infrastructure', 'AWS', 'Python', 'TypeScript'],
+  'knowsAbout': [
+    'Technical leadership',
+    'Vendor management',
+    'Requirements gathering',
+    'Cost optimization',
+    'Microsoft Dynamics 365 Business Central',
+    'GST and e-invoicing',
+    'CRM integrations',
+    'AI agents',
+    'Python',
+  ],
   'alumniOf': education.map(item => ({ '@type': 'CollegeOrUniversity', 'name': item.school })),
 }
 

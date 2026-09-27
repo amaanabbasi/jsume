@@ -150,3 +150,11 @@ export function uid() {
   counter += 1
   return `m${counter}`
 }
+
+/** Plain-text version of an answer, for structured data and /llms.txt. */
+export function plainText(source: string) {
+  return parseAnswer(source).map((block) => {
+    const text = (inlines: Inline[]) => inlines.map(inline => inline.text).join('')
+    return block.kind === 'p' ? text(block.inlines) : block.items.map(item => `- ${text(item)}`).join('\n')
+  }).join('\n\n')
+}

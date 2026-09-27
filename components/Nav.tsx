@@ -5,13 +5,14 @@ import { FiMoon, FiSun } from 'react-icons/fi'
 import { profile } from '@/data/profile'
 
 const links = [
+  { href: '#how-i-lead', label: 'How I lead' },
   { href: '#work', label: 'Work' },
-  { href: '#experience', label: 'Experience' },
+  { href: '/resume', label: 'Résumé' },
 ]
 
 export function Monogram() {
   return (
-    <span aria-hidden className="bg-accent text-accent-ink size-7 grid place-items-center rounded-lg text-[15px] font-semibold font-serif">
+    <span aria-hidden className="size-7 bg-accent text-accent-ink grid place-items-center rounded-lg text-[15px] font-semibold font-serif">
       {profile.firstName[0]}
     </span>
   )

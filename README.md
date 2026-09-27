@@ -1,6 +1,8 @@
 # amaanabbasi.me
 
-Personal portfolio of Amaan Abbasi. The landing page is a chat: visitors see a Claude-style prompt box under the name, pick a suggested question (or type one), and get an answer that streams in as if typed by me. The rest of the page covers focus areas, selected work, experience, testimonials and contact.
+Personal portfolio of Amaan Abbasi. The landing page is a chat: visitors see a prompt box under the name, pick a suggested question (or type one), and get an answer that streams in as if typed by me. The rest of the page covers how I lead, selected work, focus areas, experience, testimonials, quick answers and contact.
+
+Built to read well for people and for machines: every chat answer is also in the page HTML (the "Quick answers" section and FAQPage structured data), `/resume` is a printable résumé, and `/llms.txt` is a plain-text profile for AI assistants and recruiting tools.
 
 Built with Next.js 14 (App Router), TypeScript, Tailwind CSS and Framer Motion. Deployed on Netlify.
 
@@ -31,7 +33,7 @@ Everything visitors read lives in two files:
 
 | File | What it holds |
 | --- | --- |
-| `data/profile.ts` | Name, tagline, email and social links, focus areas, projects and metrics, experience, education, skills, testimonials |
+| `data/profile.ts` | Name, headline, tagline, email and social links, impact numbers, leadership principles, projects, experience, education, skills, testimonials |
 | `data/chat.ts` | Chat categories, the pre-written questions and answers, follow-up suggestions, and the rotating placeholder prompts |
 
 Answers support a small markdown subset: blank-line paragraphs, `- ` and `1. ` lists, `**bold**` and `[links](url)`. Typed questions are matched to the closest answer by the `keywords` on each entry (`lib/chat.ts`); anything without a confident match gets the fallback answer.
@@ -41,14 +43,16 @@ Answers support a small markdown subset: blank-line paragraphs, `- ` and `1. ` l
 ```
 app/
   layout.tsx          fonts, metadata (Open Graph, JSON-LD), theme bootstrap
-  page.tsx            page composition
+  page.tsx            page composition and FAQPage structured data
+  resume/page.tsx     printable résumé ("Save as PDF")
+  llms.txt/route.ts   plain-text profile for AI assistants, generated at build time
   globals.css         color tokens (light + dark), chat typography, illustration animations
 components/
   chat/ChatHero.tsx   greeting, conversation state, follow-ups
   chat/Composer.tsx   prompt box, suggestion panel, keyboard navigation
   chat/Messages.tsx   user bubble and streaming assistant answer
   chat/RichText.tsx   renders a partially streamed answer
-  sections.tsx        Focus, Work, Experience, Testimonials, Contact, Footer
+  sections.tsx        How I lead, Work, Focus, Experience, Testimonials, Quick answers, Contact, Footer
   Nav.tsx             sticky nav and theme toggle
   Glyphs.tsx          small animated illustrations for the focus cards
   ui.tsx              Reveal, CountUp, SectionHeading, AskChatButton

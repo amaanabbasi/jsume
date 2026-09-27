@@ -121,14 +121,14 @@ export default function ChatHero() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <a
-                  href="#contact"
+                  href="#experience"
                   className="border-line text-muted hover:text-ink bg-surface/70 mb-9 inline-flex items-center gap-2 border rounded-full px-3.5 py-1.5 text-[13px] backdrop-blur transition-colors"
                 >
                   <span className="size-2 relative flex">
-                    <span className="size-full animate-pulse-ring absolute inline-flex rounded-full bg-emerald-500" />
-                    <span className="size-2 relative inline-flex rounded-full bg-emerald-500" />
+                    <span className="bg-accent-bright size-full animate-pulse-ring absolute inline-flex rounded-full" />
+                    <span className="size-2 bg-accent-bright relative inline-flex rounded-full" />
                   </span>
-                  {profile.availability}
+                  {profile.current}
                 </a>
                 <p className="text-muted text-2xl font-serif sm:text-[28px]">
                   <AnimatePresence mode="wait" initial={false}>
@@ -140,7 +140,7 @@ export default function ChatHero() {
                 <h1 className="text-ink mt-1 text-[56px] leading-[1.05] tracking-tight font-serif sm:text-7xl">
                   {profile.name}
                 </h1>
-                <p className="text-muted mx-auto mt-6 max-w-xl text-balance text-lg leading-relaxed">
+                <p className="text-muted mx-auto mt-6 max-w-2xl text-balance text-lg leading-relaxed">
                   {profile.tagline}
                 </p>
               </motion.div>
@@ -262,7 +262,7 @@ export default function ChatHero() {
 
       {!started && (
         <a
-          href="#focus"
+          href="#how-i-lead"
           aria-label="Scroll to learn more"
           className="text-muted hover:text-ink absolute bottom-6 left-1/2 hidden transition-colors sm:block -translate-x-1/2"
         >

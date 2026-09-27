@@ -15,7 +15,7 @@ function AgentsGlyph() {
   )
 }
 
-function LlmGlyph() {
+function SystemsGlyph() {
   return (
     <svg viewBox="0 0 160 92" className="h-full w-full" aria-hidden>
       <rect x="22" y="10" width="116" height="72" rx="12" className="fill-surface stroke-muted/40" strokeWidth="1.5" />
@@ -38,8 +38,8 @@ function CostGlyph() {
   )
 }
 
-export default function Glyph({ id }: { id: 'agents' | 'llm' | 'cost' }) {
-  const Illustration = { agents: AgentsGlyph, llm: LlmGlyph, cost: CostGlyph }[id]
+export default function Glyph({ id }: { id: 'agents' | 'systems' | 'cost' }) {
+  const Illustration = { agents: AgentsGlyph, systems: SystemsGlyph, cost: CostGlyph }[id]
   return (
     <div className="bg-surface-2/60 h-28 rounded-xl p-3">
       <Illustration />

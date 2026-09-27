@@ -1,10 +1,10 @@
 // Pre-written answers for the "Ask me" chat. Answers use a tiny markdown subset:
 // blank-line paragraphs, "- " / "1. " lists, **bold** and [links](url).
 import type { IconType } from 'react-icons'
-import { FiBriefcase, FiCode, FiCpu, FiLayers, FiTrendingDown, FiUser } from 'react-icons/fi'
-import { profile } from './profile'
+import { FiCpu, FiLayers, FiMessageCircle, FiTrendingDown, FiUser, FiUsers } from 'react-icons/fi'
+import { company, profile } from './profile'
 
-export type CategoryId = 'story' | 'ai' | 'cost' | 'work' | 'stack' | 'hire'
+export type CategoryId = 'story' | 'lead' | 'ai' | 'cost' | 'work' | 'hire'
 
 export interface Category {
   id: CategoryId
@@ -23,15 +23,14 @@ export interface QA {
 
 export const categories: Category[] = [
   { id: 'story', label: 'My story', icon: FiUser },
-  { id: 'ai', label: 'AI & agents', icon: FiCpu },
+  { id: 'lead', label: 'How I lead', icon: FiUsers },
   { id: 'cost', label: 'Cost optimization', icon: FiTrendingDown },
   { id: 'work', label: 'Projects', icon: FiLayers },
-  { id: 'stack', label: 'Tech stack', icon: FiCode },
-  { id: 'hire', label: 'Work with me', icon: FiBriefcase },
+  { id: 'ai', label: 'AI & agents', icon: FiCpu },
+  { id: 'hire', label: 'Work with me', icon: FiMessageCircle },
 ]
 
 const email = `[${profile.email}](mailto:${profile.email})`
-const linkedin = `[LinkedIn](${profile.links.linkedin})`
 
 export const qas: QA[] = [
   {
@@ -39,12 +38,12 @@ export const qas: QA[] = [
     category: 'story',
     question: 'Who is Amaan?',
     keywords: ['who', 'about you', 'yourself', 'introduce', 'intro', 'amaan', 'summary', 'hello', 'hi'],
-    answer: `Hi! I'm Amaan, a software engineer based in the ${profile.location}.
+    answer: `Hi! I'm Amaan, a software engineer and technical lead at ${company}, a law firm.
 
-I've spent the last few years building software across **logistics, cloud infrastructure and enterprise systems**: log pipelines handling tens of millions of events a day, legacy apps rebuilt on modern stacks, and cloud setups that scale without drama.
+My role started in engineering and grew into owning outcomes: I gather requirements, lead interns, coordinate vendor teams, and deliver internal systems that hundreds of people use, from finance and GST compliance to expense management and CRM integrations.
 
-These days I'm focused on **AI agents and LLM systems**, and on the question most teams ask too late: what will this cost to run?`,
-    followUps: ['history', 'ai-focus', 'cost-wins'],
+Along the way I took on cost optimization too, saving about **₹36 lakh (~US$40K) a year**. Next, I'm bringing AI agents into exactly these kinds of workflows.`,
+    followUps: ['lead', 'cost-wins', 'projects'],
   },
   {
     id: 'history',
@@ -56,10 +55,10 @@ These days I'm focused on **AI agents and LLM systems**, and on the question mos
 - **2019** — Started as a web developer at ARK Security Service, then a web designer at RSTech Softwares.
 - **2020** — Backend developer at Incupad, building APIs and the data layer behind them.
 - **2021** — Web application developer at Hrdfi, then Python developer at Flipkoins.
-- **Most recently** — Software development engineer at Lakshmikumaran & Sridharan.
+- **Now** — Software development engineer at ${company}, where the role grew into requirements, vendor delivery, finance systems and cost optimization.
 
-Along the way I earned a Bachelor's from Jamia Hamdard, a Master's from Westcliff University, and a certification in Cloud Computing with AWS.`,
-    followUps: ['projects', 'reputation', 'roles'],
+Along the way I earned a Bachelor's from Jamia Hamdard, a Master's from Westcliff University, and a certification in Cloud Computing with AWS. The full version is on my [résumé](/resume).`,
+    followUps: ['lead', 'projects', 'reputation'],
   },
   {
     id: 'reputation',
@@ -73,50 +72,54 @@ Clients describe me as **"the calm problem-solver who sees around the corner"**:
 Managers call me **"the go-getter who can be trusted with the hard problems."** I take ownership, learn the business, and care about outcomes more than lines of code.
 
 In one client's words: "Very detailed and patient. Brings foresight to run multiple projects. Highly recommended."`,
-    followUps: ['projects', 'partner', 'roles'],
+    followUps: ['lead', 'vendors', 'partner'],
   },
   {
-    id: 'ai-focus',
-    category: 'ai',
-    question: 'What are you building with AI agents and LLMs?',
-    keywords: ['ai', 'agent', 'agents', 'agentic', 'llm', 'llms', 'gpt', 'claude', 'genai', 'generative', 'machine learning', 'ml', 'rag', 'focus', 'building'],
-    answer: `AI agents and LLM-powered products are where I'm putting my energy. What I focus on:
+    id: 'lead',
+    category: 'lead',
+    question: 'How do you lead a project?',
+    keywords: ['lead', 'leading', 'leadership', 'manage', 'management', 'project', 'program', 'run', 'deliver', 'delivery', 'process', 'approach', 'stakeholders'],
+    answer: `The same way every time, whether the team is interns, vendors or both:
 
-- **Agents that do real work** — tool use, retrieval and clear guardrails, not demos that break on the second try.
-- **Evaluation first** — test sets and metrics before scaling, so quality is measured rather than assumed.
-- **Cost-aware design** — the smallest model that does the job, and caching wherever it's safe.
+1. **Start with the business.** I work with the people who will use the system to pin down what they actually need and what success looks like.
+2. **Make ownership explicit.** Clear scope, owners, milestones and acceptance criteria, for my own team and for vendors.
+3. **Ship in small, visible steps,** so stakeholders see progress early and problems surface while they are cheap to fix.
+4. **Own the outcome,** including adoption, data that reconciles, and the bill.
 
-My background in backend systems and cloud infrastructure is what makes this practical: an agent is only as reliable as the APIs, data and infrastructure underneath it.`,
-    followUps: ['ai-production', 'llm-costs', 'stack'],
+That's how I've delivered applications used by hundreds of people at the firm.`,
+    followUps: ['vendors', 'cost-wins', 'projects'],
   },
   {
-    id: 'ai-production',
-    category: 'ai',
-    question: 'How do you take an LLM app to production?',
-    keywords: ['production', 'reliable', 'reliability', 'deploy', 'ship', 'prototype', 'evals', 'evaluation', 'guardrails', 'observability', 'latency', 'hallucination'],
-    answer: `The same way I'd ship any critical system, with a few LLM-specific twists:
+    id: 'vendors',
+    category: 'lead',
+    question: 'How do you work with vendors and teams?',
+    keywords: ['vendor', 'vendors', 'team', 'teams', 'interns', 'mentor', 'mentoring', 'people', 'outsourcing', 'coordinate', 'coordination', 'handle'],
+    answer: `I've led a team of four interns and coordinated vendor teams of 7 and 14 people.
 
-1. **Define success first** with a small evaluation set, before tuning prompts.
-2. **Structure the outputs** with schemas, validation and retries, so downstream code can trust them.
-3. **Watch everything**: latency, tokens and cost per request, and how things fail.
-4. **Plan for failure** with timeouts, fallbacks to simpler models, and a human hand-off where it matters.
-5. **Stream the UX**, so users feel speed even when the model needs a moment.
+With vendors, the job is making sure everyone builds the same thing:
 
-Prototypes are easy. Production is observability, budgets and boring reliability, which is exactly what I've been doing for years.`,
-    followUps: ['llm-costs', 'ai-focus', 'roles'],
+- **Requirements first** — I gather them from the business and turn them into scope a vendor can build against.
+- **One place for decisions** — priorities, open issues and changes agreed in the open, not in side conversations.
+- **Done means used** — a feature is finished when the people relying on it say it works.
+
+With interns, I give real ownership of small pieces, review closely, and widen the scope as they grow.`,
+    followUps: ['lead', 'projects', 'partner'],
   },
   {
     id: 'cost-wins',
     category: 'cost',
-    question: 'How have you cut infrastructure costs?',
-    keywords: ['cost', 'costs', 'save', 'saving', 'savings', 'cheaper', 'reduce', 'reduced', 'bill', 'spend', 'budget', 'optimization', 'optimize', 'finops', 'infrastructure', 'money'],
-    answer: `Cost optimization is my favorite kind of problem, because the savings show up on the bill every single month. Two examples:
+    question: 'How much have you saved, and how?',
+    keywords: ['cost', 'costs', 'save', 'saved', 'saving', 'savings', 'cheaper', 'reduce', 'reduced', 'bill', 'spend', 'budget', 'optimization', 'optimize', 'money', 'lakh', 'rupees'],
+    answer: `At ${company} I took on cost optimization alongside engineering. So far the savings add up to about **₹3 lakh a month, roughly ₹36 lakh (~US$40K) a year**.
 
-- **Log analytics platform** — re-architected a pipeline processing tens of millions of logs a day, with distributed processing and intelligent caching: **40% lower infrastructure cost**, 10× faster queries and 99.9% uptime.
-- **Cloud infrastructure** — replaced always-on capacity with auto-scaling and right-sized workloads: **35% lower cost** and zero downtime during traffic spikes.
+My approach is simple:
 
-The pattern is always the same: measure where the money goes, fix the biggest line item first, and treat performance and reliability as hard constraints.`,
-    followUps: ['llm-costs', 'logs', 'roles'],
+- **Find where the money actually goes** before cutting anything.
+- **Fix the biggest line items first,** because that's where effort pays back fastest.
+- **Treat reliability and people's workflows as hard constraints.** A saving that breaks something isn't a saving.
+
+The same discipline carries over to AI: models, tokens and infrastructure are just a new set of line items.`,
+    followUps: ['llm-costs', 'lead', 'projects'],
   },
   {
     id: 'llm-costs',
@@ -133,97 +136,109 @@ The pattern is always the same: measure where the money goes, fix the biggest li
 6. **Guard quality with evals**, so every saving is checked against the same test set.
 
 The goal is a smaller bill with no drop in quality, and the numbers to prove it.`,
-    followUps: ['cost-wins', 'ai-production', 'partner'],
+    followUps: ['cost-wins', 'ai-focus', 'partner'],
   },
   {
     id: 'projects',
     category: 'work',
-    question: 'What projects are you proud of?',
-    keywords: ['project', 'projects', 'proud', 'portfolio', 'built', 'case study', 'examples', 'achievements', 'accomplishments'],
-    answer: `Three that shaped how I work:
+    question: 'What have you built?',
+    keywords: ['project', 'projects', 'proud', 'portfolio', 'built', 'build', 'case study', 'examples', 'achievements', 'accomplishments', 'systems'],
+    answer: `The work I'm proudest of, all at ${company}:
 
-- **Log analytics platform** — scaled log processing to tens of millions of logs a day, with 99.9% uptime and 10× faster queries.
-- **Cloud infrastructure optimization** — auto-scaling that absorbed traffic spikes with zero downtime and 35% lower cost.
-- **Legacy application migration** — moved an enterprise app to Next.js and TypeScript: 50% faster page loads and 30% fewer bugs.
+- **Cost optimization** — about ₹36 lakh a year saved.
+- **Internal applications with vendors** — gathered requirements and coordinated vendor teams of 7 and 14 people to deliver apps used by hundreds of people at the firm.
+- **Finance system** — replicated Business Central finance workflows in a legacy system: invoicing, GST returns, e-invoicing (IRN) and customer ledger entries.
+- **Expense management** — built an expense management system and integrated our CRM with travel and expense apps.
 
-There's more detail in [Selected work](#work) below.`,
-    followUps: ['logs', 'migration', 'stack'],
+There's more in [Selected work](#work) below.`,
+    followUps: ['finance', 'expenses', 'lead'],
   },
   {
-    id: 'logs',
+    id: 'finance',
     category: 'work',
-    question: 'Tell me about the log analytics platform',
-    keywords: ['log', 'logs', 'logging', 'analytics', 'kafka', 'elasticsearch', 'pipeline', 'streaming', 'data platform'],
-    answer: `The legacy system couldn't keep up with growing log volume: queries were slow and data was getting dropped.
+    question: 'Tell me about the finance system',
+    keywords: ['finance', 'financial', 'business central', 'dynamics', 'invoice', 'invoices', 'invoicing', 'gst', 'irn', 'e-invoicing', 'ledger', 'tax', 'accounting', 'legacy'],
+    answer: `I replicated Microsoft Dynamics 365 Business Central's finance workflows inside a legacy system. It covers:
 
-I architected a cloud-based replacement:
+- **Invoicing**
+- **GST returns**
+- **E-invoicing**, including IRN (Invoice Reference Number) generation
+- **Customer ledger entries**
 
-- **Kafka** for durable, distributed ingestion
-- **Elasticsearch** for real-time indexing and search
-- **Intelligent caching** for the queries people ran all day
-- **AWS**, with services in Node.js and TypeScript
-
-The result: tens of millions of logs a day at **99.9% uptime**, **10× faster queries** and **40% lower infrastructure cost**.`,
-    followUps: ['cost-wins', 'migration', 'roles'],
+It's compliance-critical work: every figure has to reconcile, because it ends up in tax filings.`,
+    followUps: ['expenses', 'projects', 'stack'],
   },
   {
-    id: 'migration',
+    id: 'expenses',
     category: 'work',
-    question: 'Tell me about the legacy migration',
-    keywords: ['legacy', 'migration', 'migrate', 'modernize', 'modernization', 'next.js', 'nextjs', 'rewrite', 'react', 'frontend'],
-    answer: `An enterprise app was stuck on an outdated stack: slow to change and painful to maintain.
+    question: 'Tell me about the expense management system',
+    keywords: ['expense', 'expenses', 'expense management', 'crm', 'travel', 'integration', 'integrations', 'reimbursement', 'claims'],
+    answer: `I built the firm's expense management system and integrated our CRM with travel and expense apps, so data moves between them instead of being keyed in twice.
 
-I migrated it to **Next.js and TypeScript**, set up modern CI/CD, and improved the developer experience so the team could ship with confidence.
-
-The result: **50% faster page loads**, **30% fewer bugs**, and a more productive team.`,
-    followUps: ['projects', 'stack', 'partner'],
+It's the kind of workflow I enjoy most: lots of people, lots of small steps, and a real payoff when the busywork disappears.`,
+    followUps: ['finance', 'ai-focus', 'lead'],
   },
   {
     id: 'stack',
-    category: 'stack',
+    category: 'work',
     question: 'What\'s your tech stack?',
-    keywords: ['stack', 'tech', 'technologies', 'technology', 'skills', 'languages', 'tools', 'python', 'typescript', 'javascript', 'aws', 'django', 'frameworks', 'cloud'],
+    keywords: ['stack', 'tech', 'technologies', 'technology', 'skills', 'languages', 'tools', 'python', 'javascript', 'django', 'flask', 'aws', 'frameworks', 'cloud', 'sql'],
     answer: `The tools I reach for most:
 
-- **Languages** — Python, TypeScript/JavaScript, SQL
-- **Backend** — Django, Flask, Node.js, REST APIs
-- **Frontend** — React, Next.js, Tailwind CSS
-- **Cloud & infra** — AWS, Docker, Kubernetes, Terraform, Prometheus
-- **Data** — Kafka, Elasticsearch, MySQL, SQL Server, Pandas
-- **AI / ML** — LLM APIs, Keras, OpenCV
+- **Languages** — Python, JavaScript, SQL
+- **Backend & data** — Django, Flask, REST APIs, MySQL, SQL Server, Pandas
+- **Business systems** — Business Central, GST e-invoicing, CRM and expense integrations
+- **Cloud** — AWS, Linux
+- **AI / ML** — Keras and OpenCV, and now LLMs and agents
 
-I pick tools for the problem rather than the résumé, but Python and AWS are home turf.`,
-    followUps: ['ai-focus', 'projects', 'roles'],
+I pick tools for the problem rather than the résumé, but Python is home turf.`,
+    followUps: ['projects', 'ai-focus', 'partner'],
   },
   {
-    id: 'roles',
-    category: 'hire',
-    question: 'Are you open to new roles?',
-    keywords: ['hire', 'hiring', 'open', 'role', 'roles', 'job', 'position', 'opportunity', 'opportunities', 'available', 'availability', 'recruit', 'recruiter', 'full-time', 'remote', 'employ'],
-    answer: `Yes. I'm open to roles in **AI engineering**, **backend and platform engineering**, and on teams where **cost and reliability** matter as much as features.
+    id: 'ai-focus',
+    category: 'ai',
+    question: 'What are you building with AI agents?',
+    keywords: ['ai', 'agent', 'agents', 'agentic', 'llm', 'llms', 'gpt', 'claude', 'genai', 'generative', 'machine learning', 'ml', 'rag', 'automation', 'future', 'next'],
+    answer: `AI agents are where I'm heading next, and the systems I build today are where they'll be most useful.
 
-What I bring:
+Invoices, GST returns, expense claims and CRM updates are full of repetitive checks and data entry. That's the busywork I want agents to take on:
 
-- Years of shipping backend and cloud systems that stay up
-- A habit of turning ambiguity into a plan, and a plan into working software
-- A cost-first mindset that's rare, and increasingly valuable, in the LLM era
+- **Grounded in real data** — the ledger, the CRM, the policy document, not guesses.
+- **Checked before they act** — evals, validation and a human sign-off wherever money or compliance is involved.
+- **Cost-aware from day one** — the smallest model that does the job, and caching wherever it's safe.
 
-The best way to start is a short intro: email ${email} or reach out on ${linkedin}.`,
-    followUps: ['partner', 'contact', 'history'],
+I know these workflows, the people who run them and what they cost. That's what makes an agent useful rather than a demo.`,
+    followUps: ['ai-production', 'llm-costs', 'partner'],
+  },
+  {
+    id: 'ai-production',
+    category: 'ai',
+    question: 'How do you take an LLM app to production?',
+    keywords: ['production', 'reliable', 'reliability', 'deploy', 'ship', 'prototype', 'evals', 'evaluation', 'guardrails', 'observability', 'latency', 'hallucination'],
+    answer: `The same way I'd ship any business-critical system, with a few LLM-specific twists:
+
+1. **Define success first** with a small evaluation set, before tuning prompts.
+2. **Structure the outputs** with schemas, validation and retries, so downstream systems can trust them.
+3. **Watch everything**: latency, tokens and cost per request, and how things fail.
+4. **Plan for failure** with timeouts, fallbacks to simpler models, and a human hand-off where it matters.
+5. **Roll out in small steps** with the people who will use it, not all at once.
+
+Prototypes are easy. Production is observability, budgets and boring reliability.`,
+    followUps: ['llm-costs', 'ai-focus', 'lead'],
   },
   {
     id: 'partner',
     category: 'hire',
     question: 'Can we build something together?',
-    keywords: ['partner', 'partnership', 'together', 'startup', 'mvp', 'freelance', 'contract', 'consult', 'consulting', 'collaborate', 'collaboration', 'idea', 'founder', 'company'],
+    keywords: ['partner', 'partnership', 'together', 'startup', 'mvp', 'freelance', 'contract', 'consult', 'consulting', 'collaborate', 'collaboration', 'idea', 'founder', 'company', 'hire', 'hiring', 'role', 'job', 'opportunity'],
     answer: `I'd love to hear about it. I don't aim to be "your developer"; I aim to be your **tech partner**:
 
-- **Validate the idea** before we write much code
-- **Architect the solution** and pick the right tech, and the right models
-- **Build the MVP** quickly, then **scale** it without surprises on the bill
+- **Understand the business** before we write much code
+- **Plan the build**: scope, the right tech, and in-house or vendor teams
+- **Deliver, then keep costs in check** as it grows
 
 Tell me what you're building: ${email}`,
-    followUps: ['llm-costs', 'projects', 'contact'],
+    followUps: ['lead', 'cost-wins', 'contact'],
   },
   {
     id: 'contact',
@@ -235,24 +250,26 @@ Tell me what you're building: ${email}`,
 - **Email** — ${email}
 - **LinkedIn** — [in/amaanabbasi](${profile.links.linkedin})
 - **GitHub** — [amaanabbasi](${profile.links.github})
-- **X** — [@amaancypy](${profile.links.x})`,
-    followUps: ['roles', 'partner', 'intro'],
+- **X** — [@amaancypy](${profile.links.x})
+
+My full [résumé](/resume) is here too.`,
+    followUps: ['partner', 'lead', 'intro'],
   },
 ]
 
 export const fallbackAnswer = `Good question. I haven't written an answer for that one yet.
 
-These answers cover my story, AI work, cost optimization, projects and how to work with me. For anything else, email ${email} and I'll reply personally.`
+These answers cover my story, how I lead, cost optimization, projects, AI and how to work with me. For anything else, email ${email} and I'll reply personally.`
 
-export const fallbackFollowUps = ['intro', 'ai-focus', 'contact']
+export const fallbackFollowUps = ['intro', 'lead', 'contact']
 
-export const popularIds = ['intro', 'history', 'ai-focus', 'llm-costs', 'roles']
+export const popularIds = ['intro', 'lead', 'cost-wins', 'projects', 'ai-focus']
 
 export const placeholderPrompts = [
   'Ask me anything about my work…',
-  'How would you reduce our LLM bill?',
+  'How do you lead a project?',
+  'How did you save ₹36 lakh a year?',
   'What are you building with AI agents?',
-  'Walk me through your career so far',
 ]
 
 export function qaById(id: string) {
