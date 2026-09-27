@@ -2,41 +2,187 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Palette: warm ivory + terracotta. Values are RGB channels so Tailwind can apply alpha. */
 @layer base {
+  :root {
+    --bg: 250 249 245;
+    --surface: 255 255 255;
+    --surface-2: 240 238 230;
+    --line: 229 226 216;
+    --ink: 31 30 29;
+    --muted: 110 107 100;
+    --accent: 184 86 52; /* button fill, 4.7:1 with white text */
+    --accent-text: 184 86 52; /* links on bg */
+    --accent-bright: 217 119 87; /* decoration only */
+    color-scheme: light;
+  }
+
+  .dark {
+    --bg: 38 38 36;
+    --surface: 48 48 46;
+    --surface-2: 58 58 55;
+    --line: 70 69 64;
+    --ink: 240 238 230;
+    --muted: 166 163 154;
+    --accent: 184 86 52;
+    --accent-text: 217 119 87;
+    --accent-bright: 217 119 87;
+    color-scheme: dark;
+  }
+
   html {
-    @apply antialiased scroll-smooth;
+    @apply scroll-smooth antialiased;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
-    @apply bg-white text-slate-900;
+    @apply bg-bg font-sans text-ink;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgb(var(--accent-bright) / 0.25);
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent-bright));
+    outline-offset: 2px;
+  }
+
+  /* Keep anchored sections clear of the sticky nav. */
+  section[id] {
+    scroll-margin-top: 4.5rem;
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  .prose-chat p,
+  .prose-chat ul,
+  .prose-chat ol {
+    @apply my-3 first:mt-0 last:mb-0;
+  }
+
+  .prose-chat ul,
+  .prose-chat ol {
+    @apply space-y-1.5 pl-5;
+  }
+
+  .prose-chat ul {
+    @apply list-disc;
+  }
+
+  .prose-chat ol {
+    @apply list-decimal;
+  }
+
+  .prose-chat li::marker {
+    color: rgb(var(--muted));
+  }
+
+  .prose-chat strong {
+    @apply font-semibold;
+  }
+
+  .prose-chat a {
+    @apply text-accent-text underline decoration-accent-text/40 underline-offset-2 transition-colors hover:decoration-accent-text;
+  }
+
+  /* "Thinking…" label with a light sweep, like a model warming up. */
+  .text-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgb(var(--muted)) 0%,
+      rgb(var(--muted)) 40%,
+      rgb(var(--ink)) 50%,
+      rgb(var(--muted)) 60%,
+      rgb(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    @apply animate-shimmer;
   }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* ---- Small looping illustrations in the "What I work on" cards ---- */
+
+.glyph-bar {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: glyph-type 3.6s ease-in-out infinite;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+@keyframes glyph-type {
+  0% {
+    transform: scaleX(0);
+  }
+  35%,
+  80% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
 }
 
-::-webkit-scrollbar-track {
-  @apply bg-slate-100;
+.glyph-draw {
+  stroke-dasharray: 100;
+  animation: glyph-draw 4.8s ease-in-out infinite;
 }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-full;
+@keyframes glyph-draw {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  45%,
+  85% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-400;
+.glyph-fade {
+  animation: glyph-fade 4.8s ease-in-out infinite;
 }
 
+@keyframes glyph-fade {
+  0%,
+  35% {
+    opacity: 0;
+  }
+  50%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Show the illustrations in their finished state instead of their last frame. */
+  .glyph-bar,
+  .glyph-draw,
+  .glyph-fade {
+    animation: none !important;
+  }
+
+  .glyph-motion {
+    display: none;
+  }
+}

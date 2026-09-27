@@ -1,55 +1,91 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { Inter, Source_Serif_4 } from 'next/font/google'
+import { education, profile } from '@/data/profile'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const sans = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
+const serif = Source_Serif_4({ subsets: ['latin'], variable: '--font-serif', display: 'swap', axes: ['opsz'] })
+
+const title = `${profile.name} — ${profile.headline}`
 
 export const metadata: Metadata = {
-  title: 'Amaan — Your Tech Partner',
-  description:
-    'Tech partner for building scalable software solutions. Specializing in cloud infrastructure, enterprise systems, and modern web applications.',
+  metadataBase: new URL(profile.site),
+  title,
+  description: profile.tagline,
   keywords: [
-    'software developer',
-    'tech partner',
-    'full stack developer',
-    'cloud infrastructure',
-    'enterprise software',
+    'Amaan Abbasi',
+    'AI engineer',
+    'AI agents',
+    'LLM',
+    'LLM cost optimization',
+    'cloud cost optimization',
+    'software engineer',
+    'backend engineer',
+    'AWS',
+    'Python',
   ],
-  authors: [{ name: 'Amaan' }],
+  authors: [{ name: profile.name, url: profile.site }],
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Amaan — Your Tech Partner',
-    description:
-      'Tech partner for building scalable software solutions. Specializing in cloud infrastructure, enterprise systems, and modern web applications.',
-    url: 'https://amaanabbasi.me',
-    siteName: 'Amaan Portfolio',
-    type: 'website',
+    title,
+    description: profile.tagline,
+    url: profile.site,
+    siteName: profile.name,
+    type: 'profile',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: `${profile.name}: ${profile.headline}` }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Amaan — Your Tech Partner',
-    description:
-      'Tech partner for building scalable software solutions. Specializing in cloud infrastructure, enterprise systems, and modern web applications.',
+    title,
+    description: profile.tagline,
+    creator: '@amaancypy',
+    images: ['/og.png'],
   },
-  robots: {
-    index: true,
-    follow: true,
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/apple-touch-icon.png',
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FAF9F5' },
+    { media: '(prefers-color-scheme: dark)', color: '#262624' },
+  ],
+}
+
+// Runs before paint so the saved or system theme applies without a flash.
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark')}catch(e){}})()`
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  'name': profile.name,
+  'url': profile.site,
+  'jobTitle': profile.title,
+  'description': profile.tagline,
+  'email': `mailto:${profile.email}`,
+  'sameAs': Object.values(profile.links),
+  'knowsAbout': ['AI agents', 'Large language models', 'LLM cost optimization', 'Cloud infrastructure', 'AWS', 'Python', 'TypeScript'],
+  'alumniOf': education.map(item => ({ '@type': 'CollegeOrUniversity', 'name': item.school })),
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={`${sans.variable} ${serif.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.svg" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body>
+        <a
+          href="#top"
+          className="bg-surface sr-only z-50 rounded-lg px-4 py-2 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
+        {children}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
+      </body>
     </html>
   )
 }
-
