@@ -100,7 +100,10 @@ export default function ChatHero() {
     <section id="top" className="relative isolate">
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[90vh] overflow-hidden -z-10">
         <div className="absolute left-1/2 top-[12%] -translate-x-1/2">
-          <div className="bg-accent-bright/[0.16] animate-drift dark:bg-accent-bright/[0.09] h-[380px] w-[min(720px,90vw)] rounded-full blur-[90px]" />
+          <div className="bg-accent-bright/[0.14] animate-drift dark:bg-accent-bright/[0.10] h-[380px] w-[min(720px,90vw)] rounded-full blur-[90px]" />
+        </div>
+        <div className="absolute left-[18%] top-[34%]">
+          <div className="animate-drift bg-glow-cool/[0.10] dark:bg-glow-cool/[0.14] [animation-delay:-9s] h-[300px] w-[min(520px,70vw)] rounded-full blur-[100px]" />
         </div>
       </div>
 

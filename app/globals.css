@@ -2,31 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Palette: warm ivory + terracotta. Values are RGB channels so Tailwind can apply alpha. */
+/* Palette: tangerine + navy on cool neutrals. Values are RGB channels so Tailwind can apply alpha. */
 @layer base {
   :root {
-    --bg: 250 249 245;
+    --bg: 247 248 250;
     --surface: 255 255 255;
-    --surface-2: 240 238 230;
-    --line: 229 226 216;
-    --ink: 31 30 29;
-    --muted: 110 107 100;
-    --accent: 184 86 52; /* button fill, 4.7:1 with white text */
-    --accent-text: 184 86 52; /* links on bg */
-    --accent-bright: 217 119 87; /* decoration only */
+    --surface-2: 238 241 245;
+    --line: 225 229 236;
+    --ink: 15 27 45; /* navy ink */
+    --muted: 91 102 118;
+    --accent: 255 122 26; /* tangerine fill */
+    --accent-ink: 15 27 45; /* text/icons on the accent fill, 6.6:1 */
+    --accent-text: 194 65 12; /* orange text on bg, 4.9:1 */
+    --accent-bright: 255 122 26; /* decoration only */
+    --glow-cool: 99 125 255;
     color-scheme: light;
   }
 
   .dark {
-    --bg: 38 38 36;
-    --surface: 48 48 46;
-    --surface-2: 58 58 55;
-    --line: 70 69 64;
-    --ink: 240 238 230;
-    --muted: 166 163 154;
-    --accent: 184 86 52;
-    --accent-text: 217 119 87;
-    --accent-bright: 217 119 87;
+    --bg: 11 17 32;
+    --surface: 19 26 41;
+    --surface-2: 28 36 54;
+    --line: 40 50 71;
+    --ink: 232 236 243;
+    --muted: 149 160 179;
+    --accent: 255 122 26;
+    --accent-ink: 11 17 32;
+    --accent-text: 255 154 77;
+    --accent-bright: 255 138 51;
+    --glow-cool: 99 125 255;
     color-scheme: dark;
   }
 

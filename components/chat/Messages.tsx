@@ -96,7 +96,7 @@ export function AssistantMessage({ answer, animate, stopSignal, onDone }: Assist
     >
       <span
         aria-hidden
-        className="size-7 bg-accent grid mt-0.5 shrink-0 place-items-center rounded-full text-sm text-white font-semibold font-serif"
+        className="size-7 bg-accent text-accent-ink grid mt-0.5 shrink-0 place-items-center rounded-full text-sm font-semibold font-serif"
       >
         {profile.firstName[0]}
       </span>

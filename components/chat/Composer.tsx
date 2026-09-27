@@ -193,7 +193,7 @@ export default function Composer({
             onClick={busy ? onStop : submit}
             disabled={!busy && !canSend}
             aria-label={busy ? 'Stop answer' : 'Send question'}
-            className="size-9 bg-accent disabled:bg-surface-2 disabled:text-muted grid place-items-center rounded-xl text-white transition-all active:scale-95 disabled:cursor-default hover:brightness-110 disabled:active:scale-100 disabled:hover:brightness-100"
+            className="size-9 bg-accent text-accent-ink disabled:bg-surface-2 disabled:text-muted grid place-items-center rounded-xl transition-all active:scale-95 disabled:cursor-default hover:brightness-110 disabled:active:scale-100 disabled:hover:brightness-100"
           >
             {busy
               ? <FiSquare className="size-3.5 fill-current" aria-hidden />

@@ -20,8 +20,10 @@ export default {
         'ink': token('--ink'),
         'muted': token('--muted'),
         'accent': token('--accent'),
+        'accent-ink': token('--accent-ink'),
         'accent-text': token('--accent-text'),
         'accent-bright': token('--accent-bright'),
+        'glow-cool': token('--glow-cool'),
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],

@@ -175,7 +175,7 @@ export function Contact() {
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <a
               href={`mailto:${profile.email}`}
-              className="bg-accent inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-[15px] text-white font-medium transition hover:brightness-110"
+              className="bg-accent text-accent-ink inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-[15px] font-medium transition hover:brightness-110"
             >
               <FiMail className="size-4" aria-hidden />
               {profile.email}
@@ -223,7 +223,7 @@ export function Footer() {
                 href={href}
                 aria-label={label}
                 {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                className="size-9 hover:bg-surface-2 hover:text-ink grid place-items-center rounded-lg transition-colors"
+                className="hover:text-ink size-9 hover:bg-surface-2 grid place-items-center rounded-lg transition-colors"
               >
                 <Icon className="size-[18px]" aria-hidden />
               </a>
